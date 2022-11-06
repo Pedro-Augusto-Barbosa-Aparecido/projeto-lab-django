@@ -39,6 +39,10 @@ class SQLQuery:
                     migrations_dict["MIGRATION_PATH"].append(current_path)
 
                     if not os.path.exists(f"{self.__default_output_path}\\{app_name}"):
+                        print(
+                            Fore.YELLOW + Style.BRIGHT + Back.BLACK +
+                            f"Creating '{self.__default_output_path}\\{app_name}'" +
+                            Style.RESET_ALL)
                         os.mkdir(f"{self.__default_output_path}\\{app_name}")
 
                     os.system(
@@ -50,10 +54,18 @@ class SQLQuery:
                         'r',
                         encoding="utf-8"
                     )
+
                     migrations_dict["SQL_MIGRATION"].append(file.read().replace("[0m", ""))
                     migrations_dict["SQL_MIGRATION_PATH"].append(
                         f"{self.__default_output_path}\\{app_name}\\{app_name}_{file_name.replace('.py', '')}.sql")
+
                     file.close()
+
+                    print(
+                        Fore.YELLOW + Style.BRIGHT + Back.BLACK +
+                        f"Saved "
+                        f"'{self.__default_output_path}\\{app_name}\\{app_name}_{file_name.replace('.py', '')}.sql'" +
+                        Style.RESET_ALL)
 
         migrations = pd.DataFrame.from_dict(migrations_dict)
         migrations.to_excel(f"{self.__default_output_path}\\migrations.xlsx", sheet_name="Migrations", index=False)
