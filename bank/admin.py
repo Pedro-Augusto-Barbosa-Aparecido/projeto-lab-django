@@ -1,3 +1,17 @@
 from django.contrib import admin
+from .models import *
 
-# Register your models here.
+
+@admin.register(Account)
+class AccountAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(KeyPix)
+class KeyPixAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(Agency)
+class AgencyAdmin(admin.ModelAdmin):
+    pass

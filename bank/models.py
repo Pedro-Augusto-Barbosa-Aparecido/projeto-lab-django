@@ -31,6 +31,9 @@ class KeyPix(BaseModel):
     type_key = models.CharField(max_length=16, choices=TYPE_KEY_CHOICES, null=False, blank=False)
     account = models.ForeignKey(Account, on_delete=models.PROTECT, null=False, blank=False)
 
+    class Meta:
+        verbose_name_plural = "Keys Pix's"
+
     def __str__(self):
         return f"Pix | type='{self.type_key}' | by {self.account.user.name}"
 
@@ -44,6 +47,7 @@ class Agency(BaseModel):
 
     class Meta:
         ordering = ['number']
+        verbose_name_plural = "Agencies"
 
     def __str__(self):
         return f"Agência {self.number}"
